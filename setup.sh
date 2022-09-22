@@ -27,21 +27,23 @@ read any_key
 ssh -T git@github.com
 
 # NeoVim
-sude apt-get install -y ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg config unzip curl doxygen
+sudo apt-get install -y ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
 git clone https://github.com/neovim/neovim
 cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo
 sudo make install
 cd ..
 
 echo Load .bashrc file
-> ~/.bashrc
-cp ~./dotfiles/.bashrc ~/.bashrc
+cp ~/dotfiles/.bashrc ~/.bashrc
+
+echo load nvim options
+cp -r ~/dotfiles/config ~/.config
 
 # Typel script
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "NVIM_DIR/nvm.sh" #loads vim
-[ -s "$NVM_DIR/bash_completion" ] && \. "NVIM_DIR/bash_completion" #loads
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" #loads vim
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" #loads
 nvm install node --lst
 nvm install-latest-npm
 
@@ -52,20 +54,20 @@ sudo apt install default-jdk -y
 # script
 echo load shell script file
 mkdir ~/scripts
-cp ~/dotfiles/java-lint.sh ~/scripts/java-lint.sh
-sudo chmod +x ~/script/java-lint.sh
 
 # java linter
 wget https://github.com/checkstyle/checkstyle/releases/download/checkstyle-10.3.3/checkstyle-10.3.3-all.jar
 cp ./checkstyle-10.3.3-all.jar ~/scripts/checkstyle.jar
 wget https://raw.githubusercontent.com/Mr-Coxall/dot_files/main/mr-coxall_checks.xml
 cp ./mr-coxall_checks.xml ~/scripts/
+rm checkstyle-10.3.3-all.jar
+rm mr-coxall_checks.xml
 
 # rid of dotfiles
 sudo rm -R ~/dotfiles
 
 mkdir ~/ICS4U
-mkdir ~/ICS4U/Unit1/Unit1-02
+mkdir -p ~/ICS4U/Unit1/Unit1-02
 mkdir ~/ICS4U/Unit1/Unit1-03
 mkdir ~/ICS4U/Unit1/Unit1-04
 mkdir ~/ICS4U/Unit1/Unit1-05
