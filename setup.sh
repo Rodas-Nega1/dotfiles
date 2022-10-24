@@ -75,6 +75,11 @@ mkdir ~/ICS4U/Unit1/Unit1-06
 mkdir ~/ICS4U/Unit1/Unit1-07
 # ... 
 
+# Install Github
+sudo apt update
+sudo apt install gh -y
+gh auth login
+
 # reboot
 echo ---
 echo rebooting now ...
